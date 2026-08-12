@@ -122,14 +122,35 @@ AddEventHandler("Vehicles:Client:EnterVehicle", function(CurrentVehicle, Current
 end)
 
 RegisterNetEvent("Vehicles:Client:SetDespawnStuff", function(v)
-	if v ~= 0 and NetworkDoesEntityExistWithNetworkId(v) then
-		local nv = NetToVeh(v)
-		SetNetworkIdCanMigrate(v, true)
-		SetVehicleHasBeenOwnedByPlayer(nv, true)
-		SetEntityCleanupByEngine(nv, false)
-		SetVehicleNeedsToBeHotwired(nv, false)
-		SetVehRadioStation(nv, "OFF")
-	end
+    if v == 0 then return end
+    if not NetworkDoesEntityExistWithNetworkId(v) then return end
+
+    CreateThread(function()
+        if not lib.waitFor(function()
+            if NetworkDoesNetworkIdExist(v) then return true end
+        end, nil, 5000) then
+            return
+        end
+
+        local nv = NetToVeh(v)
+        if not lib.waitFor(function()
+            if DoesEntityExist(nv) then return true end
+        end, nil, 5000) then
+            return
+        end
+
+        while not HasCollisionLoadedAroundEntity(nv) do
+            Wait(0)
+        end
+
+        NetworkUseHighPrecisionBlending(v, true
+        SetEntityAsMissionEntity(nv, true, false)
+        SetNetworkIdCanMigrate(v, true)
+        SetVehicleHasBeenOwnedByPlayer(nv, true)
+        SetEntityCleanupByEngine(nv, false)
+        SetVehicleNeedsToBeHotwired(nv, false)
+        SetVehRadioStation(nv, "OFF")
+    end)
 end)
 
 plsr.State.Entity:WatchKey("Locked", function(netId, value)
