@@ -123,7 +123,6 @@ end)
 
 RegisterNetEvent("Vehicles:Client:SetDespawnStuff", function(v)
     if v == 0 then return end
-    if not NetworkDoesEntityExistWithNetworkId(v) then return end
 
     CreateThread(function()
         if not lib.waitFor(function()
