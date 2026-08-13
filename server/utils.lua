@@ -23,25 +23,6 @@ local _trailerModels = {
     [`20fttrailer`] = true,
 }
 
-local _trailerModels = {
-    [`trailers`] = true,
-    [`trailers2`] = true,
-    [`trailers3`] = true,
-    [`tvtrailer`] = true,
-    [`trailers4`] = true,
-    [`boattrailer`] = true,
-    [`trailersmall`] = true,
-    [`tr2`] = true,
-    [`tr4`] = true,
-    [`tanker`] = true,
-    [`tanker2`] = true,
-    [`trflat`] = true,
-    [`trailerlogs`] = true,
-    [`trailerlarge`] = true,
-    [`proptrailer`] = true,
-    [`20fttrailer`] = true,
-}
-
 local _validVehicleTypes = {
     automobile = true,
     bike = true,

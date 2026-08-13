@@ -143,7 +143,7 @@ RegisterNetEvent("Vehicles:Client:SetDespawnStuff", function(v)
             Wait(0)
         end
 
-        NetworkUseHighPrecisionBlending(v, true
+        NetworkUseHighPrecisionBlending(v, true)
         SetEntityAsMissionEntity(nv, true, false)
         SetNetworkIdCanMigrate(v, true)
         SetVehicleHasBeenOwnedByPlayer(nv, true)
